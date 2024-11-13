@@ -1,0 +1,71 @@
+BULLET
+	extends Area2D
+	
+	@export var speed: float = 400.0  # La velocità del proiettile
+	var direction: Vector2  # Direzione in cui il proiettile si muoverà
+	
+	func _process(delta):
+		# Muovi il proiettile nella direzione specificata
+		position += direction * speed * delta
+
+PLAYER
+	extends Node2D
+	
+	var speed: float = 200.0
+	
+	var bullet_scene: PackedScene = preload("")
+	
+	func _process(delta: float) -> void:
+		
+		# Input
+		var direction = Input.get_vector("left", "right", "up", "down")
+		position += direction * speed * delta
+		
+		var mouse_pos: Vector2 = get_global_mouse_position()
+		var mouse_dir = mouse_pos - global_position
+		rotation = atan2(mouse_dir.y, mouse_dir.x)
+		
+		# Shooting input
+		if Input.is_action_just_pressed("primary action"):
+			var bullet = bullet_scene.instantiate()
+			bullet.global_position = global_position
+			var bullet_dir = Vector2(cos(rotation), sin(rotation))
+			bullet.direction = bullet_dir
+			get_parent().add_child(bullet)
+		
+		# Shoot grenade input
+		if Input.is_action_just_pressed("secondary action"):
+			print("shoot grenade")
+
+ZOMBIE
+	extends CharacterBody2D
+	
+	# Riferimento al nodo del giocatore
+	var player: Node2D
+	@export var speed: float = 100.0
+	@export var follow_distance: float = 30.0
+	
+	func _ready() -> void:
+		# Ottieni il riferimento al nodo del player
+		player = get_parent().get_node("Player")
+	
+	func _physics_process(delta: float) -> void:
+		if player:
+			# Calcola la direzione verso il giocatore
+			var direction: Vector2 = player.global_position - global_position
+			var distance: float = direction.length()
+			
+			# Se la distanza è maggiore di follow_distance, il nemico si avvicina
+			if distance > follow_distance:
+				# Normalizza la direzione e moltiplicala per la velocità
+				direction = direction.normalized()
+				# Aggiorna la posizione del nemico usando il movimento
+				velocity = direction * speed
+				# Imposta la rotazione del nemico nella direzione del movimento
+				rotation = direction.angle()
+			else:
+				# Ferma il movimento del nemico se è entro la distanza desiderata
+				velocity = Vector2.ZERO
+			
+			# Applica il movimento
+			move_and_slide()
