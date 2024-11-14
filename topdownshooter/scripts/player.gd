@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 var speed: float = 200.0
 
+var bullet_scene: PackedScene = preload("res://scenes/bullet.tscn")
+
 func _process(delta: float) -> void:
 	
 	var mouse_pos = get_global_mouse_position()
@@ -19,4 +21,8 @@ func _process(delta: float) -> void:
 	move_and_slide()
 	
 	if Input.is_action_just_pressed("shoot"):
-		print("shoot")
+		var bullet = bullet_scene.instantiate()
+		bullet.global_position = $Pivot.global_position
+		var bullet_dir = Vector2(cos(rotation), sin(rotation))
+		bullet.direction = bullet_dir
+		get_parent().add_child(bullet)

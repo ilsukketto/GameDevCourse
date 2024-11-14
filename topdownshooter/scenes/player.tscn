@@ -17,3 +17,6 @@ texture = ExtResource("1_fja1c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_sj0hr")
+
+[node name="Pivot" type="Node2D" parent="."]
+position = Vector2(34, 10)
