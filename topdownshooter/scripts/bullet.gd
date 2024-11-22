@@ -12,6 +12,8 @@ func _process(delta: float) -> void:
 	position += direction * speed * delta
 
 func destroy(body: Node2D):
+	if body is Zombie:
+		body.health -= 1
 	queue_free()
 
 func _on_timer_timeout() -> void:

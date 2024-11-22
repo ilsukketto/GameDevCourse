@@ -19,14 +19,9 @@ mesh = SubResource("SphereMesh_thqg3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_v5qlb")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-scale = Vector2(0.2, 0.2)
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
 
 [connection signal="body_entered" from="." to="." method="destroy"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="destroy"]
-[connection signal="timeout" from="Timer" to="." method="destroy"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
