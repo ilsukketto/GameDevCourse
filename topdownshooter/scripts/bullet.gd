@@ -10,10 +10,12 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	position += direction * speed * delta
+	
+	
 
 func destroy(body: Node2D):
 	if body is Zombie:
-		body.health -= 1
+		body.health -= 25
 	queue_free()
 
 func _on_timer_timeout() -> void:

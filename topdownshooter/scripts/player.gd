@@ -4,6 +4,8 @@ var speed: float = 200.0
 
 var bullet_scene: PackedScene = preload("res://scenes/bullet.tscn")
 
+var health: float = 100
+
 func _process(delta: float) -> void:
 	
 	var mouse_pos = get_global_mouse_position()
@@ -19,6 +21,8 @@ func _process(delta: float) -> void:
 	position += direction * speed * delta
 	
 	move_and_slide()
+	
+	$UI/HealthBar.value = health
 	
 	if Input.is_action_just_pressed("shoot"):
 		var bullet = bullet_scene.instantiate()

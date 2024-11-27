@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://ce0w47458t7tx"]
+[gd_scene load_steps=6 format=3 uid="uid://ce0w47458t7tx"]
 
 [ext_resource type="Texture2D" uid="uid://yhtd4x58vr4n" path="res://graphics/player/survivor1_machine.png" id="1_fja1c"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_rr4cw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sj0hr"]
 radius = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qcavs"]
+bg_color = Color(0, 0, 0, 0.533333)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vly4q"]
+bg_color = Color(0.195312, 1, 0, 1)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_rr4cw")
@@ -20,3 +26,22 @@ shape = SubResource("CircleShape2D_sj0hr")
 
 [node name="Pivot" type="Node2D" parent="."]
 position = Vector2(34, 10)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -109.0
+offset_top = -35.0
+offset_right = 110.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_qcavs")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vly4q")
+value = 50.0
+show_percentage = false

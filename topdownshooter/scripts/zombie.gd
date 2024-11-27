@@ -6,7 +6,9 @@ var player: Player
 
 var follow_distance = 50
 
-var health: int = 3
+@onready var health_bar: ProgressBar = $HealthBar
+
+var health: int = 100
 
 func _ready() -> void:
 	player = get_parent().get_node("Player")
@@ -26,3 +28,5 @@ func _process(delta: float) -> void:
 		
 		if health <= 0:
 			queue_free()
+		
+		health_bar.value = health
