@@ -21,6 +21,7 @@ func _process(delta: float) -> void:
 		if distance > follow_distance:
 			direction = direction.normalized()
 			velocity = direction * speed
+			rotation = direction.angle()
 		else:
 			velocity = Vector2.ZERO
 		
@@ -30,3 +31,8 @@ func _process(delta: float) -> void:
 			queue_free()
 		
 		health_bar.value = health
+
+
+func _on_hit_area_body_entered(body: Node2D) -> void:
+	if body is Player:
+		body.health -= 10

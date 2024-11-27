@@ -13,7 +13,7 @@ bg_color = Color(0, 0, 0, 0.309804)
 bg_color = Color(1, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y2mua"]
-size = Vector2(8, 34)
+size = Vector2(31, 34)
 
 [node name="Zombie" type="CharacterBody2D"]
 script = ExtResource("1_3gpsm")
@@ -37,5 +37,7 @@ show_percentage = false
 [node name="HitArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
-position = Vector2(17, 0)
+position = Vector2(28.5, 0)
 shape = SubResource("RectangleShape2D_y2mua")
+
+[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]

@@ -24,6 +24,9 @@ func _process(delta: float) -> void:
 	
 	$UI/HealthBar.value = health
 	
+	if health <= 0:
+		get_tree().reload_current_scene()
+	
 	if Input.is_action_just_pressed("shoot"):
 		var bullet = bullet_scene.instantiate()
 		bullet.global_position = $Pivot.global_position
