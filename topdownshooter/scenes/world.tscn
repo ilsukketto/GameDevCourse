@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://na836whx2hhu"]
+[gd_scene load_steps=7 format=4 uid="uid://na836whx2hhu"]
 
 [ext_resource type="PackedScene" uid="uid://ce0w47458t7tx" path="res://scenes/player.tscn" id="1_s2sf2"]
 [ext_resource type="Texture2D" uid="uid://0kto0vf0seuu" path="res://graphics/tilesheet_complete.png" id="2_uqet8"]
 [ext_resource type="PackedScene" uid="uid://dfpaardfuq7ah" path="res://scenes/zombie.tscn" id="3_ct02s"]
+[ext_resource type="PackedScene" uid="uid://q611pheho4hq" path="res://scenes/pause_menu.tscn" id="4_boyj6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kb7om"]
 texture = ExtResource("2_uqet8")
@@ -575,3 +576,8 @@ z_index = 1
 
 [node name="Zombie" parent="." instance=ExtResource("3_ct02s")]
 position = Vector2(-72, -62)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("4_boyj6")]
+visible = false

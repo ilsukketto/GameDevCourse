@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ce0w47458t7tx"]
+[gd_scene load_steps=7 format=3 uid="uid://ce0w47458t7tx"]
 
 [ext_resource type="Texture2D" uid="uid://yhtd4x58vr4n" path="res://graphics/player/survivor1_machine.png" id="1_fja1c"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_rr4cw"]
+[ext_resource type="AudioStream" uid="uid://dgh4yrr1aowuw" path="res://sounds/laserShoot.wav" id="3_vv2mm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sj0hr"]
 radius = 16.0
@@ -45,3 +46,6 @@ theme_override_styles/background = SubResource("StyleBoxFlat_qcavs")
 theme_override_styles/fill = SubResource("StyleBoxFlat_vly4q")
 value = 50.0
 show_percentage = false
+
+[node name="ShotFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vv2mm")

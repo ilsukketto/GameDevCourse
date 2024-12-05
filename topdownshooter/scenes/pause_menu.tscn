@@ -1,21 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://byjdxspkafxag"]
+[gd_scene load_steps=4 format=3 uid="uid://q611pheho4hq"]
 
-[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_i8k6j"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_t86yv"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x8x2w"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btw75"]
 bg_color = Color(1, 0.914062, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tcg2s"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_peo58"]
 bg_color = Color(0.988281, 0.590652, 0, 1)
 
-[node name="MainMenu" type="Control"]
+[node name="PauseMenu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_i8k6j")
+script = ExtResource("1_t86yv")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -24,7 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0.695312, 1, 1)
+color = Color(0, 0, 0, 0.392157)
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
@@ -37,7 +38,8 @@ offset_right = 311.5
 offset_bottom = 124.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 60
-text = "TOP DOWN SHOOTER"
+text = "PAUSE MENU"
+horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -54,22 +56,23 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="PlayButton" type="Button" parent="VBoxContainer"]
+[node name="ResumeButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-theme_override_styles/hover = SubResource("StyleBoxFlat_x8x2w")
-theme_override_styles/normal = SubResource("StyleBoxFlat_tcg2s")
-text = "PLAY"
+theme_override_styles/hover = SubResource("StyleBoxFlat_btw75")
+theme_override_styles/normal = SubResource("StyleBoxFlat_peo58")
+text = "RESUME"
 
-[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+[node name="ReturnButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-text = "OPTIONS"
+text = "RETURN TO MENU"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "QUIT"
 
-[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

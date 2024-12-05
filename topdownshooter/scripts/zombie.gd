@@ -10,6 +10,8 @@ var follow_distance = 50
 
 var health: int = 100
 
+var player_in_area: bool = false
+
 func _ready() -> void:
 	player = get_parent().get_node("Player")
 
@@ -31,8 +33,15 @@ func _process(delta: float) -> void:
 			queue_free()
 		
 		health_bar.value = health
+	
+	if player_in_area:
+		player.health -= 0.1
 
 
 func _on_hit_area_body_entered(body: Node2D) -> void:
 	if body is Player:
-		body.health -= 10
+		player_in_area = true
+
+func _on_hit_area_body_exited(body: Node2D) -> void:
+	if body is Player:
+		player_in_area = false
