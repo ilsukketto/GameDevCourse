@@ -57,6 +57,9 @@ func shoot():
 
 func reload():
 	var ammo_to_reload: int = 16 - ammo_magazine
+	$Sprite2D.texture = load("res://graphics/player/survivor1_machine_christmas.png")
+	await get_tree().create_timer(1.7).timeout
+	$Sprite2D.texture = load("res://graphics/player/survivor1_reload_christmas.png")
 	ammo_magazine = 16
 	ammo_reserve -= ammo_to_reload
 
