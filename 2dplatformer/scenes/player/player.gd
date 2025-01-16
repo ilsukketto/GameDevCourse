@@ -5,6 +5,7 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
+var coins: int = 0
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -25,26 +26,6 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	if velocity.x > 0:
-		$AnimatedSprite2D.flip_h = false
-	elif velocity.x < 0:
-		$AnimatedSprite2D.flip_h = true
-	
-	if velocity.x != 0:
-		$AnimatedSprite2D.play("move")
-	else:
-		$AnimatedSprite2D.play("idle")
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	if velocity.x != 0 and is_on_floor():
 		anim_sprite.play("move")
 	elif velocity.x == 0 and is_on_floor():
@@ -56,3 +37,8 @@ func _physics_process(delta: float) -> void:
 		anim_sprite.flip_h = false
 	elif velocity.x < 0:
 		anim_sprite.flip_h = true
+	
+	if position.y >= 924:
+		get_tree().reload_current_scene()
+	
+	$UI/Control/CoinsLabel.text = str(coins)
